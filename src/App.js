@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+
+import logo from "./logo.svg";
+import "./App.css";
+
+import Homepage from "./pages/homepage/homepage.component";
+import Login from "./pages/login/login.component";
+import SignUp from "./pages/sign-up/sign-up.component";
+import NotFound from "./pages/404/not-found.component";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+      <img src={logo} className="App-logo" alt="logo" />
+      <div>
+        Icons made by{" "}
         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="https://www.flaticon.com/authors/icongeek26"
+          title="Icongeek26"
         >
-          Learn React
+          Icongeek26
+        </a>{" "}
+        from{" "}
+        <a href="https://www.flaticon.com/" title="Flaticon">
+          www.flaticon.com
         </a>
-      </header>
+      </div>
+
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route path="/login" component={Login} />
+        <Route path="/sign-up" component={SignUp} />
+        <Route path="*" component={NotFound} />
+      </Switch>
     </div>
   );
 }
