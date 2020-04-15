@@ -1,37 +1,23 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import logo from "./logo.svg";
 import "./App.css";
 
 import Homepage from "./pages/homepage/homepage.component";
-import Login from "./pages/login/login.component";
-import SignUp from "./pages/sign-up/sign-up.component";
+import SignInPage from "./pages/sign-in-page/sign-in-page.component";
+import SignUpPage from "./pages/sign-up-page/sign-up-page.component";
 import NotFound from "./pages/404/not-found.component";
+import Header from "./components/header/header.component";
 
 function App() {
   return (
     <div className="App">
-      <img src={logo} className="App-logo" alt="logo" />
-      <div>
-        Icons made by{" "}
-        <a
-          href="https://www.flaticon.com/authors/icongeek26"
-          title="Icongeek26"
-        >
-          Icongeek26
-        </a>{" "}
-        from{" "}
-        <a href="https://www.flaticon.com/" title="Flaticon">
-          www.flaticon.com
-        </a>
-      </div>
-
+      <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route path="/login" component={Login} />
-        <Route path="/sign-up" component={SignUp} />
-        <Route path="*" component={NotFound} />
+        <Route path="/sign-in" component={SignInPage} />
+        <Route path="/sign-up" component={SignUpPage} />
+        <Route component={NotFound} />
       </Switch>
     </div>
   );
