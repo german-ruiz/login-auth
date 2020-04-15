@@ -109,21 +109,15 @@ class SignUp extends React.Component {
                 handleChange={this.handleChange}
                 required
               />
-              <div className="buttons-wrapper">
-                <span className="buttons">
-                  <CustomButton
-                    text="Create" 
-                    type="submit"
-                    color="teal"
-                  />
-                  <CustomButton
-                    text="Cancel"
-                    type="button"
-                    color="grey"
-                    onClick={this.handleCancel}
-                  />
-                </span>
-              </div>
+              <span className="buttons">
+                <CustomButton text="Create" type="submit" color="teal" />
+                <CustomButton
+                  text="Cancel"
+                  type="button"
+                  color="grey"
+                  onClick={this.handleCancel}
+                />
+              </span>
             </div>
             <div className="ui error message"></div>
           </form>

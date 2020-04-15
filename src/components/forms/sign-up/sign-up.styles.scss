@@ -1,11 +1,7 @@
-.buttons-wrapper {
-  margin: auto;
-  width: 95%;
-
-  .buttons {
+.buttons {
+    margin: auto;
+    width: 95%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-
-}
