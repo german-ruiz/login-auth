@@ -1,0 +1,25 @@
+.sign-in-sign-up-form {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+
+  .column {
+    width: 75%;
+    max-width: 560px;
+    margin-bottom: 10vh;
+  }
+
+  @media only screen and (max-width: 750px) {
+    .column {
+      width: 560px;
+      max-width: 96%;
+    }
+  }
+  .message {
+    letter-spacing: 0.12em;
+  }
+}

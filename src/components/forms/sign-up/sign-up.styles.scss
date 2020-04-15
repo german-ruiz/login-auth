@@ -1,0 +1,11 @@
+.buttons-wrapper {
+  margin: auto;
+  width: 95%;
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+}

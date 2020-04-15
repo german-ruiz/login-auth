@@ -1,0 +1,11 @@
+  input {
+    &[type='password'] {
+      letter-spacing: 0.2em;
+    }
+    &[type='email']{
+      letter-spacing: 0.13em;
+    }
+    &[type='text']{
+      letter-spacing: 0.13em;
+    }
+}
