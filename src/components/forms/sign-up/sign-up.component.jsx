@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../../custom-button/customButton.component";
 
-import logo from "../../../logo.svg";
+import logo from "../../../assets/logo.svg";
 import "./sign-up.styles.scss";
 
 class SignUp extends React.Component {
@@ -110,13 +110,10 @@ class SignUp extends React.Component {
                 required
               />
               <span className="buttons">
-                <CustomButton text="Create" type="submit" color="teal" />
-                <CustomButton
-                  text="Cancel"
-                  type="button"
-                  color="grey"
-                  onClick={this.handleCancel}
-                />
+                <CustomButton type="submit" control="primary">Create</CustomButton>
+                <CustomButton type="button" control="secondary" onClick={this.handleCancel}>
+                  Cancel
+                </CustomButton>
               </span>
             </div>
             <div className="ui error message"></div>

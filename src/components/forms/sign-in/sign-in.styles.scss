@@ -1,4 +1,11 @@
-.sign-in-button {
+.sign-in-buttons {
   max-width: 95%;
   margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  // background-color: black;
 }

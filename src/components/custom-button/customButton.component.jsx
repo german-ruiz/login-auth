@@ -1,9 +1,14 @@
 import React from "react";
 
-const CustomButton = ({color, text, ...otherProps}) => {
+import "./customButton.styles.scss";
+
+const CustomButton = ({ children, color, control, ...otherProps }) => {
   return (
-    <button {...otherProps} className={`ui fluid small ${color} submit button`}>
-      {text}
+    <button
+      {...otherProps}
+      className={`${control} customButton`}
+    >
+      {children}
     </button>
   );
 };

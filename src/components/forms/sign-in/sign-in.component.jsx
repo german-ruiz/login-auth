@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 
 import FormInput from "../form-input/form-input.component";
 
-import logo from "../../../logo.svg";
+import logo from "../../../assets/logo.svg";
 import "../forms.styles.scss";
 import "./sign-in.styles.scss";
 
 import CustomButton from "../../custom-button/customButton.component";
+import { signInWithGoogle } from "../../../firebase/firebase.utils";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -65,8 +66,20 @@ class SignIn extends React.Component {
                 handleChange={this.handleChange}
                 required
               />
-              <div className="sign-in-button">
-                <CustomButton type="submit" text="Sign In" color="teal" />
+              <div className="sign-in-buttons">
+                <CustomButton type="submit" control="primary">
+                  <i className="address book outline icon" /> Sign In With Email
+                </CustomButton>
+                <CustomButton
+                  type="button"
+                  control="google"
+                  onClick={signInWithGoogle}
+                >
+                  <i className="google plus icon" /> Sign In With Google
+                </CustomButton>
+                <CustomButton type="button" control="facebook">
+                  <i className="facebook icon" /> Sign In With Facebook
+                </CustomButton>
               </div>
             </div>
             <div className="ui error message"></div>

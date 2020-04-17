@@ -1,0 +1,81 @@
+.customButton {
+  height: 5vh;
+  width: 95%;
+  margin: 0.7vh;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+  letter-spacing: 0.05rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  i {
+    background-color: transparent;
+  }
+
+  @media only screen and (max-width: 750px) {
+    font-weight: lighter;
+    font-size: 0.89rem;
+  }
+
+}
+
+.primary {
+  background-color: rgb(0, 155, 155);
+  color: white;
+
+  &:hover {
+    background-color: rgb(0, 136, 136);
+    color: white;
+  }
+  &:active {
+    background-color: rgb(0, 114, 114);
+    color: white;
+  }
+}
+
+.secondary {
+  background-color: white;
+  color: black;
+
+  &:hover {
+    background-color: rgb(187, 187, 187);
+    color: rgba(0, 0, 0, 0.797);
+    border: 1px solid rgba(0, 0, 0, 0.187);
+  }
+
+  &:active {
+    background-color: rgb(142, 142, 142);
+    color: rgba(0, 0, 0, 0.838);
+  }
+}
+
+.google {
+  background-color: #4285F4;
+  color: white;
+  
+  &:hover {
+    background-color: rgb(111, 111, 111);
+    color: rgb(255, 255, 255);
+  }
+  &:active {
+    background-color: rgb(92, 92, 92);
+    color: rgb(255, 255, 255);
+  }
+}
+
+.facebook {
+  background-color: #4267B2;
+  color: white;
+
+  &:hover {
+    background-color: rgb(44, 71, 125);
+    color: white;
+  }
+  &:active {
+    background-color: rgb(35, 62, 116);
+    color: white;
+  }
+}

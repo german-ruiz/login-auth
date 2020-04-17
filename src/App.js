@@ -11,15 +11,15 @@ import NotFound from "./pages/404/not-found.component";
 
 function App() {
   return (
-      <div className="App">
-        {/* <Header /> */}
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/sign-in" component={SignInPage} />
-          <Route path="/sign-up" component={SignUpPage} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
+    <div className="App">
+      {/* <Header /> */}
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route path="/sign-in" component={SignInPage} />
+        <Route path="/sign-up" component={SignUpPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </div>
   );
 }
 
