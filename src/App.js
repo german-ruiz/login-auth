@@ -10,12 +10,14 @@ import NotFound from "./pages/404/not-found.component";
 // import Header from "./components/header/header.component";
 
 import { auth } from "./firebase/firebase.utils";
+import Loading from "./components/loading/loading.component";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
       user: null,
+      loading: true,
     };
   }
 
@@ -27,7 +29,8 @@ class App extends React.Component {
         user: user ? user.displayName : null,
       });
 
-      // console.log(user.displayName);
+      // add 200ms timeout
+      setTimeout(() => this.setState({ loading: false }), 200);
     });
   }
 
@@ -41,46 +44,47 @@ class App extends React.Component {
     return (
       <div className="App">
         {/* <Header /> */}
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={({ location }) =>
-              user ? (
-                <Homepage user={user}/>
-              ) : (
-                <Redirect
-                  to={{ pathname: "/sign-in", state: { from: location } }}
-                />
-              )
-            }
-          />
-          <Route
-            path="/sign-in"
-            render={({ location }) =>
-              user ? (
-                <Redirect
-                  to={{ pathname: "/", state: { from: location } }}
-                />
-              ) : (
-                <SignInPage/>
-              )
-            }
-          />
-          <Route
-            path="/sign-up"
-            render={({ location }) =>
-              user ? (
-                <Redirect
-                  to={{ pathname: "/", state: { from: location } }}
-                />
-              ) : (
-                <SignUpPage/>
-              )
-            }
-          />
-          <Route component={NotFound} />
-        </Switch>
+
+        {(this.state.loading && !user) ? (
+          <Loading />
+        ) : (
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={({ location }) =>
+                user ? (
+                  <Homepage user={user} />
+                ) : (
+                  <Redirect
+                    to={{ pathname: "/sign-in", state: { from: location } }}
+                  />
+                )
+              }
+            />
+            <Route
+              path="/sign-in"
+              render={({ location }) =>
+                user ? (
+                  <Redirect to={{ pathname: "/", state: { from: location } }} />
+                ) : (
+                  <SignInPage />
+                )
+              }
+            />
+            <Route
+              path="/sign-up"
+              render={({ location }) =>
+                user ? (
+                  <Redirect to={{ pathname: "/", state: { from: location } }} />
+                ) : (
+                  <SignUpPage />
+                )
+              }
+            />
+            <Route component={NotFound} />
+          </Switch>
+        )}
       </div>
     );
   }
