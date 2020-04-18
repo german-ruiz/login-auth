@@ -56,7 +56,7 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="sign-in-sign-up-form">
+      <div className="my-form">
         <div className="column">
           <h2 className="ui teal image header">
             <img src={logo} className="image" alt="coding logo" />
