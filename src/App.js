@@ -9,14 +9,14 @@ import SignUpPage from "./pages/sign-up-page/sign-up-page.component";
 import NotFound from "./pages/404/not-found.component";
 // import Header from "./components/header/header.component";
 
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import Loading from "./components/loading/loading.component";
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: null,
+      displayName: null,
       loading: true,
     };
   }
@@ -24,13 +24,30 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({
-        user: user ? user.displayName : null,
-      });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        // Create profile in db and returns userRef
+        const userRef = createUserProfileDocument(userAuth);
+
+        // Add user to state
+        (await userRef).onSnapshot((snapShot) => {
+          this.setState(
+            {
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data(),
+              },
+            },
+            () => console.log(this.state)
+          );
+        });
+      }
+      // else {
+      this.setState({ currentUser: userAuth }, () => console.log(this.state));
+      // }
 
       // add 200ms timeout
-      setTimeout(() => this.setState({ loading: false }), 200);
+      setTimeout(() => this.setState({ loading: false }), 2000);
     });
   }
 
@@ -39,13 +56,13 @@ class App extends React.Component {
   }
 
   render() {
-    const user = this.state.user;
+    const user = this.state.displayName;
 
     return (
       <div className="App">
         {/* <Header /> */}
 
-        {(this.state.loading && !user) ? (
+        {this.state.loading && !user ? (
           <Loading />
         ) : (
           <Switch>
