@@ -85,7 +85,7 @@ class SignIn extends React.Component {
             <div className="ui error message"></div>
           </form>
           <div className="ui message">
-            New to us? <Link to="/sign-up">Sign Up</Link>
+            New to us? Sign up with <Link to="/sign-up">email.</Link>
           </div>
         </div>
       </div>

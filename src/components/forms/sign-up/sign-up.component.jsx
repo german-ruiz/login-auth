@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../../custom-button/customButton.component";
 
+import {
+  auth,
+  createUserProfileDocument,
+} from "../../../firebase/firebase.utils";
 import logo from "../../../assets/logo.svg";
 import "./sign-up.styles.scss";
 
@@ -19,29 +23,46 @@ class SignUp extends React.Component {
     };
   }
 
+  componentWillUnmount() {}
+
   handleChange = (event) => {
     const { name, value } = event.target;
 
-    this.setState({
-      [name]: value,
-    });
+    this.setState({ [name]: value });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
 
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+    } = this.state;
+    const displayName = `${firstName} ${lastName}`;
+
     // Check passwords match
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
 
     // Submit to firebase
+    try {
+      // Create userAuth
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-    // If successful redirect to homepage
-    this.setState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-    });
+      // Add user to our database
+      await createUserProfileDocument(user, { displayName });
+    } catch (error) {
+      console.log(error);
+      alert(error.message);
+    }
   };
 
   handleCancel = () => {
@@ -110,8 +131,14 @@ class SignUp extends React.Component {
                 required
               />
               <span className="buttons">
-                <CustomButton type="submit" control="primary">Create</CustomButton>
-                <CustomButton type="button" control="secondary" onClick={this.handleCancel}>
+                <CustomButton type="submit" control="primary">
+                  Create
+                </CustomButton>
+                <CustomButton
+                  type="button"
+                  control="secondary"
+                  onClick={this.handleCancel}
+                >
                   Cancel
                 </CustomButton>
               </span>

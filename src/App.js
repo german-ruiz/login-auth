@@ -16,7 +16,6 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      displayName: null,
       loading: true,
     };
   }
@@ -47,7 +46,7 @@ class App extends React.Component {
       // }
 
       // add 200ms timeout
-      setTimeout(() => this.setState({ loading: false }), 2000);
+      setTimeout(() => this.setState({ loading: false }), 200);
     });
   }
 
@@ -56,7 +55,7 @@ class App extends React.Component {
   }
 
   render() {
-    const user = this.state.displayName;
+    const user = this.state.currentUser;
 
     return (
       <div className="App">
@@ -71,7 +70,7 @@ class App extends React.Component {
               path="/"
               render={({ location }) =>
                 user ? (
-                  <Homepage user={user} />
+                  <Homepage displayName={user.displayName} />
                 ) : (
                   <Redirect
                     to={{ pathname: "/sign-in", state: { from: location } }}
