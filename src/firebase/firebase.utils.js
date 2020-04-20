@@ -22,7 +22,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   // Add user to db if snapshot does not exist
   if(!snapShot.exists) {
-    const { displayName, email } = userAuth;
+    const { displayName, email, photoURL } = userAuth;
     const createdAt = new Date();
     
     try {
@@ -30,6 +30,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
+        photoURL,
         ...additionalData
       })
       
@@ -47,10 +48,13 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+const facebookProvider = new firebase.auth.FacebookAuthProvider();
 // Set to always use google pop up when we use the GoogleAuthProvider for
 // authentication and sign in
-provider.setCustomParameters({ prompt: "select_account" });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+googleProvider.setCustomParameters({ prompt: "select_account" });
+facebookProvider.setCustomParameters({ display: "popup" });
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+export const signInWithFacebook = () => auth.signInWithPopup(facebookProvider);
 
 export default firebase;

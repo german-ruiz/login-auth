@@ -30,20 +30,15 @@ class App extends React.Component {
 
         // Add user to state
         (await userRef).onSnapshot((snapShot) => {
-          this.setState(
-            {
-              currentUser: {
-                id: snapShot.id,
-                ...snapShot.data(),
-              },
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
             },
-            () => console.log(this.state)
-          );
+          });
         });
       }
-      // else {
-      this.setState({ currentUser: userAuth }, () => console.log(this.state));
-      // }
+      this.setState({ currentUser: userAuth });
 
       // add 200ms timeout
       setTimeout(() => this.setState({ loading: false }), 200);
@@ -70,7 +65,7 @@ class App extends React.Component {
               path="/"
               render={({ location }) =>
                 user ? (
-                  <Homepage displayName={user.displayName} />
+                  <Homepage displayName={user.displayName} photoURL={user.photoURL}/>
                 ) : (
                   <Redirect
                     to={{ pathname: "/sign-in", state: { from: location } }}

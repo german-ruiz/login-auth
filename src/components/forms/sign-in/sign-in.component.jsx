@@ -8,7 +8,11 @@ import "../forms.styles.scss";
 import "./sign-in.styles.scss";
 
 import CustomButton from "../../custom-button/customButton.component";
-import { auth, signInWithGoogle } from "../../../firebase/firebase.utils";
+import {
+  auth,
+  signInWithGoogle,
+  signInWithFacebook,
+} from "../../../firebase/firebase.utils";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -36,7 +40,6 @@ class SignIn extends React.Component {
     } catch (error) {
       alert(error.message);
     }
-    
   };
 
   render() {
@@ -78,7 +81,11 @@ class SignIn extends React.Component {
                 >
                   <i className="google plus icon" /> Sign In With Google
                 </CustomButton>
-                <CustomButton type="button" control="facebook">
+                <CustomButton
+                  type="button"
+                  control="facebook"
+                  onClick={signInWithFacebook}
+                >
                   <i className="facebook icon" /> Sign In With Facebook
                 </CustomButton>
               </div>

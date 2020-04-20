@@ -8,7 +8,7 @@ const CustomButton = ({ children, color, control, ...otherProps }) => {
       {...otherProps}
       className={`${control} customButton`}
     >
-      {children}
+      <span>{children}</span>
     </button>
   );
 };
