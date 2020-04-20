@@ -12,12 +12,11 @@ const Homepage = ({ displayName, photoURL }) => {
     <div className="my-form">
       <div className="column">
         <img
-          src={photoURL}
+          src={photoURL || logo}
           className="image current-user-image"
           alt="current user"
         />
         <h2 className="ui teal image header">
-
           <div className="content">Hello, {displayName}</div>
         </h2>
         <div className="ui message">
