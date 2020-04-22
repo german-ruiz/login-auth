@@ -33,10 +33,12 @@ class SignIn extends React.Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+
     const { email, password } = this.state;
     // Sign in with firebase
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      this.props.setToLoading();
     } catch (error) {
       alert(error.message);
     }

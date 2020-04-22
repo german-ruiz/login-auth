@@ -59,6 +59,8 @@ class SignUp extends React.Component {
 
       // Add user to our database
       await createUserProfileDocument(user, { displayName });
+      this.props.setToLoading();
+      
     } catch (error) {
       alert(error.message);
     }

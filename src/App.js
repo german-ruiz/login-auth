@@ -18,6 +18,8 @@ class App extends React.Component {
     this.state = {
       loading: true,
     };
+
+    this.setToLoading = this.setToLoading.bind(this);
   }
 
   unsubscribeFromAuth = null;
@@ -49,6 +51,10 @@ class App extends React.Component {
     this.unsubscribeFromAuth();
   }
 
+  setToLoading() {
+    this.setState({ loading: true }, () => console.log(this.state));
+  }
+
   render() {
     const user = this.state.currentUser;
 
@@ -56,7 +62,7 @@ class App extends React.Component {
       <div className="App">
         {/* <Header /> */}
 
-        {this.state.loading && !user ? (
+        {this.state.loading ? (
           <Loading />
         ) : (
           <Switch>
@@ -79,7 +85,7 @@ class App extends React.Component {
                 user ? (
                   <Redirect to={{ pathname: "/", state: { from: location } }} />
                 ) : (
-                  <SignInPage />
+                  <SignInPage setToLoading={this.setToLoading} />
                 )
               }
             />
@@ -89,7 +95,7 @@ class App extends React.Component {
                 user ? (
                   <Redirect to={{ pathname: "/", state: { from: location } }} />
                 ) : (
-                  <SignUpPage />
+                  <SignUpPage setToLoading={this.setToLoading} />
                 )
               }
             />
